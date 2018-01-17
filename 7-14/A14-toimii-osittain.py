@@ -16,6 +16,7 @@
 def symbols(string):
     chars = []
     letters = ["q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","i","j","k","l","z","x","c","v","b","n","m"]
+    i = 0
     # Convert to list and accept only letters, '+' and '='
     for char in string:
         if char == "=" or char == "+":
@@ -28,32 +29,36 @@ def symbols(string):
         left = False
         letter = False
         right = False
-        result = False
         # Check condition on left side
         if chars[i] == "+":
             left = True
+        else:
+            left = False
         for j in range(len(letters)):
             # Check middle condition
             if chars[i+1] == letters[j]:
                 letter = True
                 theLetter = letters[j]
-                break
+            else:
+                letter = False
         # Check condition on right side
         if chars[i+2] == "+" and letter:
             right = True
-        # Build result
-        if left and letter and right:
-            result = "True"
-        elif left and letter and right == False:
-            result = "False '" + theLetter + "' is surrounded by + only on the left side"
-        elif left == False and letter and right:
-            result = "False '" + theLetter+ "' is surrounded by + only on the right side"
-        elif letter and left == False and right == False:
-            result = "False '" + theLetter + "' is not surrounded by + symbols at all"
-        else:
-            result = "True"
-        return result
+            break
+
+    # Build result
+    if left and letter and right:
+        result = "True"
+    elif left and letter and right == False:
+        result = "False '" + theLetter + "' is surrounded by + only on the left side"
+    elif left == False and letter and right:
+        result = "False '" + theLetter+ "' is surrounded by + only on the right side"
+    elif letter and left == False and right == False:
+        result = "False '" + theLetter + "' is not surrounded by + symbols at all"
+    else:
+        result = " "
+    return result
 
 # Testing
-testi = "======="
+testi = "+a++a+a+a+a+a+a+a+a+a+a+a"
 print symbols(testi)
