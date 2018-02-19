@@ -1,2 +1,1 @@
-# python
-Script Programming Assignments
+# Script Programming Course Assignments
