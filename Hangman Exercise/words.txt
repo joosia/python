@@ -1,0 +1,10 @@
+python
+script
+language
+homework
+developer
+programming
+atom
+macro
+terminal
+application
